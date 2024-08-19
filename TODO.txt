@@ -1,0 +1,16 @@
+IDEIAS PARA O JOGO
+-------------------------
+- Eventos temporários (como na versão do Fabrício)
+- PowerUps (itens)
+
+TODO
+[~] carro oscilando entre duas faixas (angular)
+[ ] "trem" de carros que passa rápido - enfileirados muito próximos e passam rápido
+[ ] carro desaparece e reaparece - fila contínua de carros?
+[ ] carro vai e volta (??)
+[ ] score
+[ ] moeda para coletar -> score
+[ ] turbo pad -> empurra na direção (estilo Mario Kart). Usar no level design
+
+DONE
+[X] carro linear

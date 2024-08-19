@@ -28,5 +28,5 @@ func _process(delta: float) -> void:
 	#global_rotation = _rotation + sin(_counter)/(4 * rotation_interval)
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	transform.x = -transform.x

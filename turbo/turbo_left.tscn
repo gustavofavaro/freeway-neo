@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd4shjnq5r8fr"]
+
+[ext_resource type="PackedScene" uid="uid://408hmm5cr6sv" path="res://turbo/turbo_right.tscn" id="1_r1t2r"]
+
+[node name="Turbo" instance=ExtResource("1_r1t2r")]
+rotation = 3.14159

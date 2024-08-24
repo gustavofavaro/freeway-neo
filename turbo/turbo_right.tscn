@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://408hmm5cr6sv"]
+
+[ext_resource type="Script" path="res://turbo/turbo.gd" id="1_0828m"]
+[ext_resource type="Texture2D" uid="uid://ctu01e1rn3f60" path="res://turbo/props_tiles.png" id="1_cjp5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgkj4"]
+atlas = ExtResource("1_cjp5j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxnct"]
+atlas = ExtResource("1_cjp5j")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vfbo"]
+atlas = ExtResource("1_cjp5j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5x4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgkj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxnct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vfbo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ut4v"]
+size = Vector2(8, 8)
+
+[node name="Turbo" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_0828m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_v5x4i")
+autoplay = "default"
+frame_progress = 0.0199902
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4ut4v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

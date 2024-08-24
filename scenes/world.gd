@@ -3,10 +3,20 @@ class_name FullScreenToggle
 
 var _activated: bool = false
 
+func _ready() -> void:
+	# injecting object references into GameController
+	GameController.ui_score = $CanvasLayer/LabelScore
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fullscreen"):
 		_toggle_fullscreen()
+
+	if Input.is_action_just_pressed("ui_exit"):
+		get_tree().quit()
+
+	if Input.is_action_just_pressed("ui_filter"):
+		$CanvasLayer/ColorRectFilter.visible = not $CanvasLayer/ColorRectFilter.visible
 
 
 func _toggle_fullscreen() -> void:

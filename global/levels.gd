@@ -4,14 +4,16 @@ class_name CLevels
 # Place to store all levels cars patterns
 var level: int = 1
 
-func get_level_pattern(level: int):
+func get_level_pattern(game_level: int):
 	# level 1 -> index 0
-	level -= 1  
+	game_level -= 1  
 	
-	if level >= len(patterns):
+	if game_level >= len(patterns):
 		return []
 	
-	return patterns[level]
+	#var pattern: Array[Spawner]
+	
+	return patterns[game_level]
 
 # LEVEL 1
 # 	4 ->

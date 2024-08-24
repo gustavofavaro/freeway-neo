@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxnuytmnunx2i"]
+[gd_scene load_steps=23 format=3 uid="uid://dxnuytmnunx2i"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_5qghy"]
 [ext_resource type="Texture2D" uid="uid://uysa2y3h8n37" path="res://player/ChickenSpriteSheet.png" id="1_bsgct"]
@@ -167,18 +167,25 @@ _data = {
 "run": SubResource("Animation_8xomc")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_padgf"]
+radius = 4.0
+
+[sub_resource type="Curve" id="Curve_epl46"]
+_data = [Vector2(0, 0.472527), 0.0, 0.0, 0, 0, Vector2(0.988764, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Chicken" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_5qghy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_dwlhd")
-animation = &"run_right"
+animation = &"run_down"
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 5)
+position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_bmk01")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -186,3 +193,19 @@ libraries = {
 "": SubResource("AnimationLibrary_kgn6i")
 }
 autoplay = "idle"
+
+[node name="Collector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collector"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_padgf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+lifetime = 0.2
+gravity = Vector2(0, 0)
+scale_amount_min = 4.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_epl46")

@@ -1,12 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfxqkw2wj4rgf"]
+[gd_scene load_steps=10 format=3 uid="uid://cfxqkw2wj4rgf"]
 
 [ext_resource type="Script" path="res://teleporter/teleporter.gd" id="1_2fkuh"]
+[ext_resource type="Texture2D" uid="uid://cgw3t3ynvxw8j" path="res://teleporter/teleporter.png" id="2_3o8nm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11ccc"]
+atlas = ExtResource("2_3o8nm")
+region = Rect2(29, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cj77"]
+atlas = ExtResource("2_3o8nm")
+region = Rect2(58, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rayxn"]
+atlas = ExtResource("2_3o8nm")
+region = Rect2(87, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti3w5"]
+atlas = ExtResource("2_3o8nm")
+region = Rect2(0, 0, 29, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqjxs"]
+atlas = ExtResource("2_3o8nm")
+region = Rect2(116, 0, 29, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x47e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11ccc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cj77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rayxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti3w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqjxs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1te3c"]
+radius = 3.0
 
 [node name="Teleporter" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_2fkuh")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x47e4")
+autoplay = "default"
+frame_progress = 0.600056
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1te3c")
 
 [node name="Destination" type="Marker2D" parent="."]
 editor_description = "The destination to where the body entered in the area will be teleported."

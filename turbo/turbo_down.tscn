@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwistb6jmjflu"]
+[gd_scene load_steps=3 format=3 uid="uid://cwistb6jmjflu"]
 
 [ext_resource type="PackedScene" uid="uid://408hmm5cr6sv" path="res://turbo/turbo_right.tscn" id="1_u7pfs"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ut4v"]
+size = Vector2(12, 12)
+
 [node name="Turbo" instance=ExtResource("1_u7pfs")]
 rotation = 1.5708
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-8.63073e-13, -2.38419e-07)
+shape = SubResource("RectangleShape2D_4ut4v")

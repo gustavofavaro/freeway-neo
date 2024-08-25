@@ -1,28 +1,32 @@
 IDEIAS PARA O JOGO
 -------------------------
-- Eventos temporários (como na versão do Fabrício)
-- PowerUps (itens)
+- Eventos temporários (como na versão do Fabrício)?
+- PowerUps (itens)?
 
 TODO
-[ ] tile de "tunel" para spawner
-[ ] score
+[ ] estados do level e contabilização do score
 [ ] carro pequeno -> RC Car, passa rápido embaixo dos demais
 [ ] moeda normal e super moeda (mais score -> mais risco em pagá-la) muda de lugar temporizadamente?
-[ ] turbo pad -> empurra na direção (estilo Mario Kart). Usar no level design
 [ ] "trem" de carros que passa rápido - enfileirados muito próximos e passam rápido[ ]
+[ ] Sombra do player ao passar pelo turbo
 
 LEVELS
+[ ] levels que é só turbo, com múltiplos caminhos (vários dead ends)
 [ ] neblina -> atrapalha visão
 [ ] noite -> visibilidade apenas na área iluminada pelos faróis dos carros (ou ao redor da galinha)
 [ ] chuva -> faz o player andar sem parar
 
 MAYBE
-[x] teleporter -> entra em um local e sai em outro
-[x] moeda para coletar -> score
 [~] spanwer e patterns tilemap
 [ ] carro desaparece e reaparece - fila contínua de carros?
 [~] carro oscilando entre duas faixas (angular)
 [ ] carro vai e volta (??)
 
 DONE
+[X] timer do level
 [X] carro linear
+[X] turbo pad -> empurra na direção (estilo Mario Kart). Usar no level design
+[X] score
+[X] Efeito de portal para o spawner (tile de "tunel" para spawner)
+[x] teleporter -> entra em um local e sai em outro
+[x] moeda para coletar -> score

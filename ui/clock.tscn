@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dix13vvsv2oih"]
+
+[ext_resource type="Script" path="res://ui/clock.gd" id="1_2uy1u"]
+[ext_resource type="Texture2D" uid="uid://bmbvrheqh862a" path="res://ui/clock_ui.png" id="1_mvtko"]
+[ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="2_1muto"]
+
+[node name="Clock" type="Node2D"]
+script = ExtResource("1_2uy1u")
+
+[node name="SpriteClock" type="Sprite2D" parent="."]
+texture = ExtResource("1_mvtko")
+
+[node name="LabelClock" type="Label" parent="."]
+offset_left = 13.0
+offset_top = -4.0
+offset_right = 205.0
+offset_bottom = 12.0
+scale = Vector2(0.677205, 0.677205)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1muto")
+text = "000"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://408hmm5cr6sv"]
+[gd_scene load_steps=9 format=3 uid="uid://408hmm5cr6sv"]
 
 [ext_resource type="Script" path="res://turbo/turbo.gd" id="1_0828m"]
 [ext_resource type="Texture2D" uid="uid://ctu01e1rn3f60" path="res://turbo/props_tiles.png" id="1_cjp5j"]
+[ext_resource type="PackedScene" uid="uid://cjjmvorlw6k45" path="res://fx/fx_creator.tscn" id="3_1um8j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgkj4"]
 atlas = ExtResource("1_cjp5j")
@@ -47,5 +48,8 @@ frame_progress = 0.0199902
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4ut4v")
+
+[node name="FXCreator" parent="." instance=ExtResource("3_1um8j")]
+resource_path = "res://fx/fx_turbo.tscn"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

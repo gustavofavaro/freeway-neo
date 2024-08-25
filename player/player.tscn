@@ -1,7 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dxnuytmnunx2i"]
+[gd_scene load_steps=26 format=3 uid="uid://dxnuytmnunx2i"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_5qghy"]
 [ext_resource type="Texture2D" uid="uid://uysa2y3h8n37" path="res://player/ChickenSpriteSheet.png" id="1_bsgct"]
+[ext_resource type="Texture2D" uid="uid://bqdka2h3232dc" path="res://player/smoke.png" id="3_jenfo"]
+[ext_resource type="PackedScene" uid="uid://cjjmvorlw6k45" path="res://fx/fx_creator.tscn" id="4_n0vmh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_viyis"]
 atlas = ExtResource("1_bsgct")
@@ -111,7 +113,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmk01"]
-size = Vector2(9, 6)
+size = Vector2(7, 7)
 
 [sub_resource type="Animation" id="Animation_wmrnq"]
 length = 0.001
@@ -171,21 +173,27 @@ _data = {
 radius = 4.0
 
 [sub_resource type="Curve" id="Curve_epl46"]
-_data = [Vector2(0, 0.472527), 0.0, 0.0, 0, 0, Vector2(0.988764, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.00561798, 0.164835), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_nk7bo"]
+offsets = PackedFloat32Array(0.0266667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Chicken" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
+collision_mask = 32
 script = ExtResource("1_5qghy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.486135, 6)
 sprite_frames = SubResource("SpriteFrames_dwlhd")
 animation = &"run_down"
 offset = Vector2(0, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -2)
+[node name="CollisionShapeWalls" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_bmk01")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -195,6 +203,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Collector" type="Area2D" parent="."]
+position = Vector2(0, 6)
 collision_layer = 16
 collision_mask = 0
 
@@ -204,8 +213,29 @@ shape = SubResource("CircleShape2D_padgf")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 y_sort_enabled = true
-lifetime = 0.2
+position = Vector2(0, 4)
+emitting = false
+amount = 5
+lifetime = 0.4
+texture = ExtResource("3_jenfo")
 gravity = Vector2(0, 0)
 scale_amount_min = 4.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_epl46")
+color_ramp = SubResource("Gradient_nk7bo")
+
+[node name="WallDetector" type="Node2D" parent="."]
+position = Vector2(0, 2.5)
+
+[node name="RayCast2D1" type="RayCast2D" parent="WallDetector"]
+position = Vector2(0, -5.5)
+target_position = Vector2(14, 0)
+collision_mask = 32
+
+[node name="RayCast2D2" type="RayCast2D" parent="WallDetector"]
+position = Vector2(0, 5.5)
+target_position = Vector2(14, 0)
+collision_mask = 32
+
+[node name="FXCreator" parent="." instance=ExtResource("4_n0vmh")]
+resource_path = "res://fx/fx_death.tscn"

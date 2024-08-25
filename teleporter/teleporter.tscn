@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfxqkw2wj4rgf"]
+[gd_scene load_steps=14 format=3 uid="uid://cfxqkw2wj4rgf"]
 
 [ext_resource type="Script" path="res://teleporter/teleporter.gd" id="1_2fkuh"]
 [ext_resource type="Texture2D" uid="uid://cgw3t3ynvxw8j" path="res://teleporter/teleporter.png" id="2_3o8nm"]
+[ext_resource type="Texture2D" uid="uid://s1wbiho3w660" path="res://teleporter/particle.png" id="3_an67i"]
+[ext_resource type="PackedScene" uid="uid://cjjmvorlw6k45" path="res://fx/fx_creator.tscn" id="4_ctx4e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11ccc"]
 atlas = ExtResource("2_3o8nm")
@@ -47,16 +49,23 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1te3c"]
-radius = 3.0
+radius = 8.0
+
+[sub_resource type="Curve" id="Curve_pxyid"]
+_data = [Vector2(0, 0.175824), 0.0, 0.0, 0, 0, Vector2(0.983146, 0.274725), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_obeut"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Teleporter" type="Area2D"]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_2fkuh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x47e4")
 autoplay = "default"
-frame_progress = 0.600056
+frame_progress = 0.96761
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1te3c")
@@ -64,4 +73,15 @@ shape = SubResource("CircleShape2D_1te3c")
 [node name="Destination" type="Marker2D" parent="."]
 editor_description = "The destination to where the body entered in the area will be teleported."
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture = ExtResource("3_an67i")
+emission_shape = 2
+emission_sphere_radius = 13.0
+gravity = Vector2(0, -10)
+scale_amount_curve = SubResource("Curve_pxyid")
+color_ramp = SubResource("Gradient_obeut")
+
+[node name="FXCreator" parent="." instance=ExtResource("4_ctx4e")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

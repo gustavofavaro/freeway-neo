@@ -29,4 +29,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	transform.x = -transform.x
+	#transform.x = -transform.x
+	GameController.player_hit()

@@ -9,15 +9,35 @@ enum PlayerState {CONTROLLING, MOVING, STOPPED}
 
 var _screen_size: Vector2
 var _size: Vector2
+var start_position: Vector2
 var input: Vector2
 var next_input: Vector2
 var next_pos: Vector2
 var state: PlayerState
 var timer: Timer
+@onready var particles: CPUParticles2D = $CPUParticles2D
+@onready var fx_creator: FXCreator = $FXCreator
+
+@onready var wall_detector: Node2D = $WallDetector
+@onready var raycast1: RayCast2D = $WallDetector/RayCast2D1
+@onready var raycast2: RayCast2D = $WallDetector/RayCast2D2
 
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size
 	_size = $AnimatedSprite2D.sprite_frames.get_frame_texture('run_up',0).get_size() # *  $AnimatedSprite2D.scale	
+	particles.emitting = false
+	start_position = global_position
+
+
+func restart() -> void:
+	fx_creator.create_fx(global_position)
+	global_position = start_position
+	input = Vector2.ZERO
+	
+
+func disable() -> void:
+	visible = false
+	process_mode = ProcessMode.PROCESS_MODE_DISABLED
 
 
 func _get_input() -> void:
@@ -36,17 +56,40 @@ func _get_input() -> void:
 	#if ipos.x % 16 == 0 and ipos.y % 16 == 0:
 		#global_position = ipos/16 * 16
 		#input = next_input
+
+
+func _correct_corner_hit() -> Vector2:
+	var correction: Vector2 = Vector2.ZERO
+
+	if input.y != 0:
+		raycast1.position.y = -5.5
+		raycast2.position.y =  5.5
+	else:
+		raycast1.position.y = -3.5
+		raycast2.position.y =  3.5
+
+	wall_detector.rotation = input.angle()
+	if raycast1.is_colliding() != raycast2.is_colliding():
+		if raycast1.is_colliding():
+			correction = -(raycast1.global_position - wall_detector.global_position).normalized()
+		else:
+			correction = -(raycast2.global_position - wall_detector.global_position).normalized()
+		#print(correction)
 	
+	return correction
+
 
 func _move_player() -> void:
+	var correction = _correct_corner_hit()
+	
 	if input:
-		velocity = input * SPEED
+		velocity = (input + correction) * SPEED
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 	move_and_slide()
 	
 	global_position.x = wrap(global_position.x, 0, _screen_size.x)
-	global_position.y = clamp(global_position.y, 0, _screen_size.y - _size.y/2)
+	global_position.y = clamp(global_position.y, 0, _screen_size.y - _size.y/2)	
 
 
 func _dash(direction: Vector2) -> void:
@@ -83,17 +126,23 @@ func animate() -> void:
 	if velocity:
 		if velocity.y > 0:
 			_animatedSprite.play('run_down')
+			particles.position.y = -4
 		elif velocity.y < 0:
 			_animatedSprite.play('run_up')
+			particles.position.y = 0
 			
 		if velocity.x > 0:
 			_animatedSprite.play('run_right')
+			particles.position.y = -2
 		elif velocity.x < 0:
 			_animatedSprite.play('run_left')
+			particles.position.y = -2
 	
 	if velocity:
+		particles.emitting = true
 		_animationPlayer.play('run')
 	else:
+		particles.emitting = false
 		_animationPlayer.play('idle')
 		_animatedSprite.frame = 0
 		_animatedSprite.stop()

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvvnccoun1wvg"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_m5qax"]
+[ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="2_snume"]
+[ext_resource type="Script" path="res://scenes/fps_label.gd" id="3_l0of5"]
+[ext_resource type="PackedScene" uid="uid://dix13vvsv2oih" path="res://ui/clock.tscn" id="4_q78ke"]
+[ext_resource type="Texture2D" uid="uid://cp0weubjf7v6m" path="res://ui/heart.png" id="5_sxcvb"]
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_m5qax")
+
+[node name="LabelFPS" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 19.0
+offset_right = 174.0
+offset_bottom = 35.0
+scale = Vector2(0.487436, 0.487436)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_snume")
+text = "FPS:60"
+script = ExtResource("3_l0of5")
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 206.0
+offset_bottom = 20.0
+scale = Vector2(0.677205, 0.677205)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_snume")
+text = "SCORE 000000"
+vertical_alignment = 1
+
+[node name="TextureRectLives" type="TextureRect" parent="."]
+offset_left = 282.0
+offset_right = 336.0
+offset_bottom = 16.0
+texture = ExtResource("5_sxcvb")
+stretch_mode = 1
+
+[node name="LabelLives" type="Label" parent="TextureRectLives"]
+offset_left = -61.0
+offset_top = 4.0
+offset_right = 131.0
+offset_bottom = 20.0
+scale = Vector2(0.677205, 0.677205)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_snume")
+text = "LIVES"
+vertical_alignment = 1
+
+[node name="Clock" parent="." instance=ExtResource("4_q78ke")]
+position = Vector2(448, 8)

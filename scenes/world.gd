@@ -5,7 +5,8 @@ var _activated: bool = false
 
 func _ready() -> void:
 	# injecting object references into GameController
-	GameController.ui_score = $CanvasLayer/LabelScore
+	GameController.inject($Chicken, $CanvasLayer/HUD)
+	GameController.level_started()
 
 
 func _process(_delta: float) -> void:

@@ -55,6 +55,7 @@ ui_filter={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Item"
 2d_physics/layer_5="Collector"
+2d_physics/layer_6="Walls"
 
 [rendering]
 

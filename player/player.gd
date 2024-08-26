@@ -16,7 +16,8 @@ var next_pos: Vector2
 var state: PlayerState
 var timer: Timer
 @onready var particles: CPUParticles2D = $CPUParticles2D
-@onready var fx_creator: FXCreator = $FXCreator
+@onready var fx_death: FXCreator = $FXCreatorDeath
+@onready var fx_reset: FXCreator = $FXCreatorReset
 
 @onready var wall_detector: Node2D = $WallDetector
 @onready var raycast1: RayCast2D = $WallDetector/RayCast2D1
@@ -30,8 +31,9 @@ func _ready() -> void:
 
 
 func restart() -> void:
-	fx_creator.create_fx(global_position)
+	fx_death.create_fx(global_position)
 	global_position = start_position
+	fx_reset.create_fx(global_position)
 	input = Vector2.ZERO
 	
 

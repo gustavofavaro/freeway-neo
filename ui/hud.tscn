@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_m5qax"]
 [ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="2_snume"]
-[ext_resource type="Script" path="res://scenes/fps_label.gd" id="3_l0of5"]
+[ext_resource type="Script" path="res://ui/fps_label.gd" id="3_l0of5"]
 [ext_resource type="PackedScene" uid="uid://dix13vvsv2oih" path="res://ui/clock.tscn" id="4_q78ke"]
 [ext_resource type="Texture2D" uid="uid://cp0weubjf7v6m" path="res://ui/heart.png" id="5_sxcvb"]
 

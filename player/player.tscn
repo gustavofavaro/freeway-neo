@@ -237,5 +237,7 @@ position = Vector2(0, 5.5)
 target_position = Vector2(14, 0)
 collision_mask = 32
 
-[node name="FXCreator" parent="." instance=ExtResource("4_n0vmh")]
+[node name="FXCreatorDeath" parent="." instance=ExtResource("4_n0vmh")]
 resource_path = "res://fx/fx_death.tscn"
+
+[node name="FXCreatorReset" parent="." instance=ExtResource("4_n0vmh")]

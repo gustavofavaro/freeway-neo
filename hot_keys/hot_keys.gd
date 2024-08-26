@@ -1,13 +1,12 @@
-extends Node2D
-class_name FullScreenToggle
+extends Node
+class_name HotKeys
 
-var _activated: bool = false
+@export var rect_filter: ColorRect
 
 func _ready() -> void:
-	# injecting object references into GameController
-	GameController.inject($Chicken, $CanvasLayer/HUD)
-	GameController.level_started()
-
+	assert(rect_filter, name + ": the shader ColorRect (rect_filter) must be set.")
+	rect_filter.visible = GameController.show_filter
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fullscreen"):
@@ -17,13 +16,14 @@ func _process(_delta: float) -> void:
 		get_tree().quit()
 
 	if Input.is_action_just_pressed("ui_filter"):
-		$CanvasLayer/ColorRectFilter.visible = not $CanvasLayer/ColorRectFilter.visible
+		GameController.show_filter = not GameController.show_filter
+		rect_filter.visible = GameController.show_filter
 
 
 func _toggle_fullscreen() -> void:
-	_activated = not _activated
+	GameController.show_fullscreen = not GameController.show_fullscreen
 	
-	if _activated:
+	if GameController.show_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

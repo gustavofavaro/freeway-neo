@@ -8,6 +8,8 @@ TODO
 [ ] carro pequeno -> RC Car, passa rápido embaixo dos demais
 [ ] moeda normal e super moeda (mais score -> mais risco em pagá-la) muda de lugar temporizadamente?
 [ ] "trem" de carros que passa rápido - enfileirados muito próximos e passam rápido[ ]
+[ ] tile que reduz velocidade do jogador
+[ ] tile de dano ao jogador (espinhos)
 [ ] Sombra do player ao passar pelo turbo
 
 LEVELS

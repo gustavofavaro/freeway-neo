@@ -16,14 +16,25 @@ class Entry:
 class Pattern:
 	var list: Array[Entry] = []
 	var idx: int = 0
+	var dir: int = 1
 	
 	func append(type: int, speed: float) -> void:
 		list.append(Entry.new(type, speed))
 	
 	func get_next() -> Entry:
 		var next: Entry = list[idx]
-		idx = (idx + 1) % len(list) # wrap around pattern list
+		#idx = (idx + 1) % len(list) # wrap around pattern list
+		idx += dir
+		if idx < 0: idx = len(list)-1
+		elif idx > len(list)-1: idx = 0
+		#wrapi(dir, 0, len(list)-1)
+
 		return next
+		
+	func set_direction(_dir: int) -> void:
+		dir = _dir
+		if dir < 0:
+			idx = len(list)-1
 	
 ##################################################
 class CarResource:
@@ -82,7 +93,7 @@ func _ready() -> void:
 	_preload_all_resources()
 	#_set_default_pattern()
 	_make_pattern_from_str()
-	
+	pattern.set_direction(int(-transform.x.x))
 	
 func _preload_all_resources() -> void:
 	for res: CarResource in resource_table:

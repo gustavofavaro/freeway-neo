@@ -5,13 +5,19 @@ var total_score: int
 var player_lives: int
 var game_level: int
 
+var show_fullscreen: bool = false
+var show_filter: bool = true
+var show_particles: bool = true
+
 # injected access to game elements
 var hud: HUD
 var player: Player
+var camera: GameCamera
 
-func inject(_player: Player, _hud: HUD) -> void:
+func inject(_player: Player, _hud: HUD, _camera: GameCamera) -> void:
 	player  = _player
 	hud = _hud
+	camera = _camera
 
 func game_started() -> void:
 	total_score = 0
@@ -49,7 +55,7 @@ func life_collected(life: int) -> void:
 
 
 func player_hit() -> void:
-	#camera shake
+	camera.shake_camera(1, 0.2)
 	player.restart()
 	player_lives -= 1
 	hud.update_lives(player_lives)

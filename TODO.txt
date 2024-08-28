@@ -4,6 +4,7 @@ IDEIAS PARA O JOGO
 - PowerUps (itens)?
 
 TODO
+[ ] no inicio do level colocar um título para o level ou uma frase. Ex: "Mind the spikes!"
 [ ] estados do level e contabilização do score
 [ ] carro pequeno -> RC Car, passa rápido embaixo dos demais
 [ ] moeda normal e super moeda (mais score -> mais risco em pagá-la) muda de lugar temporizadamente?

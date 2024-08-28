@@ -214,7 +214,6 @@ shape = SubResource("CircleShape2D_padgf")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 4)
-emitting = false
 amount = 5
 lifetime = 0.4
 texture = ExtResource("3_jenfo")

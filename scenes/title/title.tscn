@@ -1,17 +1,19 @@
-[gd_scene load_steps=29 format=4 uid="uid://cwj33hyuc31np"]
+[gd_scene load_steps=30 format=4 uid="uid://cwj33hyuc31np"]
 
+[ext_resource type="Script" path="res://scenes/title/title.gd" id="1_e2fij"]
 [ext_resource type="PackedScene" uid="uid://c8vlfult08tsb" path="res://hot_keys/hot_keys.tscn" id="2_fmu2e"]
 [ext_resource type="Script" path="res://scenes/game_camera.gd" id="2_kv6hc"]
 [ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="4_1grhu"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="4_vvkr0"]
 [ext_resource type="PackedScene" uid="uid://migrbpekpdrr" path="res://hot_keys/press_to_load.tscn" id="5_835xq"]
+[ext_resource type="PackedScene" uid="uid://csrojqmafe08d" path="res://fade/fade_rect.tscn" id="6_ossrl"]
 [ext_resource type="Script" path="res://spawner/spawners_initializer.gd" id="6_weuij"]
 [ext_resource type="PackedScene" uid="uid://c058voh0iydh2" path="res://spawner/spawner.tscn" id="7_bmrss"]
-[ext_resource type="Texture2D" uid="uid://crp0gruiwuoof" path="res://scenes/logo_gamepad.png" id="7_pcdry"]
+[ext_resource type="Texture2D" uid="uid://crp0gruiwuoof" path="res://scenes/title/logo_gamepad.png" id="7_pcdry"]
 [ext_resource type="Texture2D" uid="uid://dvqc4n7pram2j" path="res://tiles/traffic_cone.png" id="8_ishck"]
 [ext_resource type="Texture2D" uid="uid://dw1nyiujc6q14" path="res://tiles/road_tiles.png" id="9_mfegb"]
 [ext_resource type="Texture2D" uid="uid://b00teogcan1ft" path="res://tiles/traffic_cone_sizes.png" id="10_optws"]
-[ext_resource type="Script" path="res://scenes/scrolling_tilemap.gd" id="12_4hopu"]
+[ext_resource type="Script" path="res://scenes/title/scrolling_tilemap.gd" id="12_4hopu"]
 [ext_resource type="Texture2D" uid="uid://cj13bvtkks7q3" path="res://spawner/car_tiles_24x26.png" id="18_hjwwt"]
 [ext_resource type="Script" path="res://spawner/patterns_map.gd" id="19_koglb"]
 
@@ -31,10 +33,6 @@ region = Rect2(160, 0, 80, 80)
 atlas = ExtResource("7_pcdry")
 region = Rect2(240, 0, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjm6f"]
-atlas = ExtResource("7_pcdry")
-region = Rect2(320, 0, 80, 80)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_t0tky"]
 animations = [{
 "frames": [{
@@ -49,13 +47,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rkora")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jjm6f")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_72atn"]
@@ -154,9 +149,10 @@ sources/0 = SubResource("TileSetAtlasSource_38w0y")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_e2fij")
 
 [node name="HotKeys" parent="." node_paths=PackedStringArray("rect_filter") instance=ExtResource("2_fmu2e")]
-rect_filter = NodePath("../CanvasLayer/ColorRectFilter")
+rect_filter = NodePath("../CanvasLayer/ScreenFilter")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(256, 144)
@@ -167,7 +163,7 @@ script = ExtResource("2_kv6hc")
 [node name="ColorRectBg" type="ColorRect" parent="CanvasLayer"]
 offset_right = 512.0
 offset_bottom = 288.0
-color = Color(0.152941, 0.152941, 0.152941, 0.254902)
+color = Color(0.152941, 0.152941, 0.152941, 0.137255)
 
 [node name="LabelTitle" type="Label" parent="CanvasLayer"]
 offset_top = 32.0
@@ -183,18 +179,21 @@ text = "CHI-KEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LabelPress" parent="CanvasLayer" instance=ExtResource("5_835xq")]
+[node name="PressStart" parent="CanvasLayer" instance=ExtResource("5_835xq")]
 offset_top = 72.0
 offset_bottom = 128.0
-scene_to_load = "res://levels/level1.tscn"
+delay = 0.5
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(464, 240)
+[node name="AnimatedUTFPR" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(464, 264)
 sprite_frames = SubResource("SpriteFrames_t0tky")
 autoplay = "default"
-frame_progress = 0.411427
+frame_progress = 0.363222
 
-[node name="ColorRectFilter" type="ColorRect" parent="CanvasLayer"]
+[node name="Fade" parent="CanvasLayer" instance=ExtResource("6_ossrl")]
+visible = false
+
+[node name="ScreenFilter" type="ColorRect" parent="CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_72atn")
 offset_right = 512.0

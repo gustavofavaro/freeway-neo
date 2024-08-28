@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv4v4728f7lsg"]
+
+[ext_resource type="Script" path="res://scenes/game_over/game_over.gd" id="1_w5nyg"]
+[ext_resource type="PackedScene" uid="uid://c8vlfult08tsb" path="res://hot_keys/hot_keys.tscn" id="2_jbgfa"]
+[ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="3_crviv"]
+[ext_resource type="PackedScene" uid="uid://csrojqmafe08d" path="res://fade/fade_rect.tscn" id="7_0s0qy"]
+[ext_resource type="FontFile" uid="uid://c34caer6u8xi7" path="res://fonts/EnterCommand.ttf" id="7_rr5r6"]
+[ext_resource type="Shader" path="res://scenes/crt.gdshader" id="8_a1u3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72atn"]
+shader = ExtResource("8_a1u3m")
+shader_parameter/resolution = Vector2(512, 288)
+shader_parameter/scan_line_amount = 0.1
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.05
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_w5nyg")
+
+[node name="HotKeys" parent="." node_paths=PackedStringArray("rect_filter") instance=ExtResource("2_jbgfa")]
+rect_filter = NodePath("../CanvasLayer/ScreenFilter")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRectBg" type="ColorRect" parent="CanvasLayer"]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="LabelTitle" type="Label" parent="CanvasLayer"]
+offset_top = 24.0
+offset_right = 512.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.870387, 1.44392e-06, 1.2514e-06, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_crviv")
+theme_override_font_sizes/font_size = 25
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelScore" type="Label" parent="CanvasLayer"]
+modulate = Color(0, 0.798343, 3.85046e-07, 1)
+offset_top = 88.0
+offset_right = 512.0
+offset_bottom = 112.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_crviv")
+theme_override_font_sizes/font_size = 15
+text = "SCORE 0000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelInfo" type="Label" parent="CanvasLayer"]
+offset_top = 144.0
+offset_right = 512.0
+offset_bottom = 168.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_crviv")
+theme_override_font_sizes/font_size = 12
+text = "submit your score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelStatus" type="Label" parent="CanvasLayer"]
+offset_top = 200.0
+offset_right = 512.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0.999791, 0.174771, 0.127717, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_crviv")
+theme_override_font_sizes/font_size = 8
+text = "ERROR: name is empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEditName" type="LineEdit" parent="CanvasLayer"]
+offset_left = 96.0
+offset_top = 168.0
+offset_right = 416.0
+offset_bottom = 199.0
+theme_override_fonts/font = ExtResource("7_rr5r6")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Enter your name"
+max_length = 50
+
+[node name="Fade" parent="CanvasLayer" instance=ExtResource("7_0s0qy")]
+visible = false
+mouse_filter = 2
+
+[node name="ScreenFilter" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_72atn")
+offset_right = 512.0
+offset_bottom = 288.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="text_submitted" from="CanvasLayer/LineEditName" to="." method="_on_line_edit_name_text_submitted"]

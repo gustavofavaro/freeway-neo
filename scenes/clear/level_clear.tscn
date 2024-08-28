@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://hwrkiv8fs76q"]
+
+[ext_resource type="Script" path="res://scenes/clear/level_clear.gd" id="1_gs1ah"]
+[ext_resource type="PackedScene" uid="uid://c8vlfult08tsb" path="res://hot_keys/hot_keys.tscn" id="2_1bpxe"]
+[ext_resource type="FontFile" uid="uid://bvjv08871rcrg" path="res://fonts/GamegirlClassic-9MVj.ttf" id="3_yly2i"]
+[ext_resource type="Script" path="res://scenes/clear/label_coins.gd" id="4_2pqll"]
+[ext_resource type="PackedScene" uid="uid://migrbpekpdrr" path="res://hot_keys/press_to_load.tscn" id="4_k03oi"]
+[ext_resource type="Script" path="res://scenes/title/press_start.gd" id="4_yb4j0"]
+[ext_resource type="PackedScene" uid="uid://csrojqmafe08d" path="res://fade/fade_rect.tscn" id="5_qkd8i"]
+[ext_resource type="Shader" path="res://scenes/crt.gdshader" id="6_xfcf5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72atn"]
+shader = ExtResource("6_xfcf5")
+shader_parameter/resolution = Vector2(512, 288)
+shader_parameter/scan_line_amount = 0.1
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.05
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = -8.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_gs1ah")
+
+[node name="HotKeys" parent="." node_paths=PackedStringArray("rect_filter") instance=ExtResource("2_1bpxe")]
+rect_filter = NodePath("../CanvasLayer/ScreenFilter")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRectBg" type="ColorRect" parent="CanvasLayer"]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="LabelTitle" type="Label" parent="CanvasLayer"]
+offset_top = 24.0
+offset_right = 512.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(1, 0.595077, 0.439651, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_yly2i")
+theme_override_font_sizes/font_size = 25
+text = "LEVEL CLEAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelCoins" type="Label" parent="CanvasLayer"]
+offset_top = 88.0
+offset_right = 512.0
+offset_bottom = 112.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_yly2i")
+theme_override_font_sizes/font_size = 17
+text = "COINS 05/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_2pqll")
+
+[node name="LabelBonus" type="Label" parent="CanvasLayer"]
+offset_top = 120.0
+offset_right = 512.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0.0405029, 0.0223527, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_yly2i")
+theme_override_font_sizes/font_size = 13
+text = "All coins bonus!
++1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_yb4j0")
+delay = 0.35
+
+[node name="LabelScore" type="Label" parent="CanvasLayer"]
+offset_top = 176.0
+offset_right = 512.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_yly2i")
+theme_override_font_sizes/font_size = 15
+text = "TOTAL SCORE: 000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_2pqll")
+
+[node name="PressStart" parent="CanvasLayer" instance=ExtResource("4_k03oi")]
+offset_top = 224.0
+offset_bottom = 280.0
+
+[node name="Fade" parent="CanvasLayer" instance=ExtResource("5_qkd8i")]
+visible = false
+
+[node name="ScreenFilter" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_72atn")
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(1, 1, 1, 0)

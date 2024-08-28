@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://csrojqmafe08d"]
+
+[ext_resource type="Script" path="res://fade/fade_rect.gd" id="1_hdkfu"]
+
+[node name="Fade" type="ColorRect"]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_hdkfu")

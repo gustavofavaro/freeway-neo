@@ -14,7 +14,9 @@ var input: Vector2
 var next_input: Vector2
 var next_pos: Vector2
 var state: PlayerState
+var invincible: bool
 var timer: Timer
+
 @onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var fx_death: FXCreator = $FXCreatorDeath
 @onready var fx_reset: FXCreator = $FXCreatorReset
@@ -28,18 +30,33 @@ func _ready() -> void:
 	_size = $AnimatedSprite2D.sprite_frames.get_frame_texture('run_up',0).get_size() # *  $AnimatedSprite2D.scale	
 	particles.emitting = false
 	start_position = global_position
+	set_invincible(true)
 
+
+func destroy() -> void:
+	fx_death.create_fx(global_position)
+	visible = false
 
 func restart() -> void:
-	fx_death.create_fx(global_position)
+	destroy()
+	visible = true
 	global_position = start_position
 	fx_reset.create_fx(global_position)
 	input = Vector2.ZERO
-	
 
-func disable() -> void:
-	visible = false
-	process_mode = ProcessMode.PROCESS_MODE_DISABLED
+
+func set_invincible(_invincible: bool) -> void:
+	invincible = _invincible 
+	if invincible:
+		await get_tree().create_timer(0.5).timeout
+		invincible = false
+
+
+func set_enable(enable: bool) -> void:
+	if enable:
+		process_mode = ProcessMode.PROCESS_MODE_INHERIT
+	else:
+		process_mode = ProcessMode.PROCESS_MODE_DISABLED
 
 
 func _get_input() -> void:
@@ -128,17 +145,13 @@ func animate() -> void:
 	if velocity:
 		if velocity.y > 0:
 			_animatedSprite.play('run_down')
-			particles.position.y = -4
 		elif velocity.y < 0:
 			_animatedSprite.play('run_up')
-			particles.position.y = 0
 			
 		if velocity.x > 0:
 			_animatedSprite.play('run_right')
-			particles.position.y = -2
 		elif velocity.x < 0:
 			_animatedSprite.play('run_left')
-			particles.position.y = -2
 	
 	if velocity:
 		particles.emitting = true

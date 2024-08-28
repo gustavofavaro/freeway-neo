@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crp0gruiwuoof"
-path="res://.godot/imported/logo_gamepad.png-da8f28666a52ef009f21f47aebd5dae5.ctex"
+uid="uid://dpvtpqe3j6km1"
+path="res://.godot/imported/car_tiles.png-832ef7e468003547224f3850bc834e21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/logo_gamepad.png"
-dest_files=["res://.godot/imported/logo_gamepad.png-da8f28666a52ef009f21f47aebd5dae5.ctex"]
+source_file="res://car/car_tiles.png"
+dest_files=["res://.godot/imported/car_tiles.png-832ef7e468003547224f3850bc834e21.ctex"]
 
 [params]
 

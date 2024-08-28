@@ -6,3 +6,4 @@
 [node name="Spawner" type="Sprite2D"]
 texture = ExtResource("1_wk7ng")
 script = ExtResource("2_wntkw")
+pattern_str = "A-E-P----"

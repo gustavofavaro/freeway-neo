@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c86kswigop75n"]
 
 [ext_resource type="Script" path="res://car/car.gd" id="1_2fn6d"]
-[ext_resource type="Texture2D" uid="uid://c2trnf4qses2k" path="res://car/car_sketch1.png" id="1_eeeya"]
 [ext_resource type="Texture2D" uid="uid://bqdka2h3232dc" path="res://player/smoke.png" id="2_hovkw"]
+[ext_resource type="Texture2D" uid="uid://c2trnf4qses2k" path="res://car/car_sketch1.png" id="3_pv7wf"]
 
 [sub_resource type="Curve" id="Curve_tfrts"]
 _data = [Vector2(0.011236, 0.10989), 0.0, 0.0, 0, 0, Vector2(1, 0.153846), 0.0, 0.0, 0, 0]
@@ -13,31 +13,31 @@ offsets = PackedFloat32Array(0.0266667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tusx"]
-size = Vector2(20, 7)
+size = Vector2(18, 7)
 
-[sub_resource type="Animation" id="Animation_x6jke"]
+[sub_resource type="Animation" id="Animation_8gfen"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -2)]
+"update": 1,
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_pvul6"]
+[sub_resource type="Animation" id="Animation_lh7f8"]
 resource_name = "run"
 length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,10 +47,10 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -0.5)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybr7h"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wx4lw"]
 _data = {
-"RESET": SubResource("Animation_x6jke"),
-"run": SubResource("Animation_pvul6")
+"RESET": SubResource("Animation_8gfen"),
+"run": SubResource("Animation_lh7f8")
 }
 
 [node name="Car" type="Area2D"]
@@ -70,9 +70,8 @@ scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_tfrts")
 color_ramp = SubResource("Gradient_grmcv")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -2)
-texture = ExtResource("1_eeeya")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_pv7wf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
@@ -80,7 +79,7 @@ shape = SubResource("RectangleShape2D_0tusx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ybr7h")
+"": SubResource("AnimationLibrary_wx4lw")
 }
 autoplay = "run"
 

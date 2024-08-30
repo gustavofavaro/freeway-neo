@@ -12,7 +12,6 @@ var base_speed: float = 1	# enemies speed factor
 var coins_total: int
 var coins_collected: int
 
-var show_fullscreen: bool = false
 var show_filter: bool = true
 var show_particles: bool = true
 
@@ -33,6 +32,7 @@ func init_game() -> void:
 	game_level = 1
 	scene_index = 1
 	base_speed = 1
+	player_lives = 0
 	
 func level_started(coins: int) -> void:
 	coins_total = coins
@@ -41,8 +41,8 @@ func level_started(coins: int) -> void:
 	player.set_enable(false)
 	hud.do_fade(1.0, 0.0, 1.0, start_player)
 	
-	if player_lives < 3:
-		player_lives = 3
+	#if player_lives < 3:
+		#player_lives = 3
 	hud.update_lives(player_lives)
 	hud.update_score(total_score)
 
@@ -67,7 +67,8 @@ func level_completed() -> void:
 
 # game time is up
 func timeup() -> void:
-	show_end_msg_and_call("TIME'S UP", load_game_over)
+	GameController.player_hit()
+	show_end_msg_and_call("TIME'S UP", get_tree().reload_current_scene)
 
 func game_over() -> void:
 	show_end_msg_and_call("OH NOES!", load_game_over)

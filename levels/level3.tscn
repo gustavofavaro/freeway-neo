@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://6ate03mpiyxe"]
+[gd_scene load_steps=25 format=4 uid="uid://6ate03mpiyxe"]
 
 [ext_resource type="Script" path="res://scenes/level_controller.gd" id="1_vis6a"]
 [ext_resource type="Script" path="res://scenes/game_camera.gd" id="2_rrjgv"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c058voh0iydh2" path="res://spawner/spawner.tscn" id="6_22oi6"]
 [ext_resource type="Texture2D" uid="uid://dvqc4n7pram2j" path="res://tiles/traffic_cone.png" id="7_ynuh7"]
 [ext_resource type="Texture2D" uid="uid://dw1nyiujc6q14" path="res://tiles/road_tiles.png" id="8_fcqca"]
-[ext_resource type="Texture2D" uid="uid://b00teogcan1ft" path="res://tiles/traffic_cone_sizes.png" id="9_opbhm"]
+[ext_resource type="TileSet" uid="uid://cungaci3tnh1a" path="res://levels/tileset_cones.tres" id="9_24nab"]
 [ext_resource type="PackedScene" uid="uid://408hmm5cr6sv" path="res://turbo/turbo_right.tscn" id="10_ly04q"]
 [ext_resource type="PackedScene" uid="uid://bd4shjnq5r8fr" path="res://turbo/turbo_left.tscn" id="11_37y5a"]
 [ext_resource type="PackedScene" uid="uid://cd47s71sk6prk" path="res://turbo/turbo_up.tscn" id="12_grr50"]
@@ -41,23 +41,6 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 14
 sources/2 = SubResource("TileSetAtlasSource_c1hbc")
 sources/4 = SubResource("TileSetAtlasSource_rj41p")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_che38"]
-texture = ExtResource("9_opbhm")
-texture_region_size = Vector2i(8, 8)
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-2:1/0/texture_origin = Vector2i(0, 5)
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -5, 4, -5, 4, -1, -4, -1)
-
-[sub_resource type="TileSet" id="TileSet_1kb3a"]
-tile_size = Vector2i(8, 8)
-physics_layer_0/collision_layer = 32
-physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_che38")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ydcoe"]
 scenes/1/scene = ExtResource("10_ly04q")
@@ -137,8 +120,9 @@ tile_set = SubResource("TileSet_rwjca")
 [node name="TilemapWalls" type="TileMapLayer" parent="Tilemaps"]
 y_sort_enabled = true
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAZACAAAAACAAEAAAARACAAAAACAAEAAAAJACAAAAACAAEAAAAoACAAAAACAAEAAAAwACAAAAACAAEAAAA3ACAAAAACAAEAAAAdAB0AAAACAAEAAAAeAB0AAAACAAEAAAAfAB0AAAACAAEAAAAgAB0AAAACAAEAAAAhAB0AAAACAAEAAAAiAB0AAAACAAEAAAAjAB0AAAACAAEAAAAkAB0AAAACAAEAAAAUABYAAAACAAEAAAAVABYAAAACAAEAAAAWABYAAAACAAEAAAAXABYAAAACAAEAAAAYABYAAAACAAEAAAAZABYAAAACAAEAAAAaABYAAAACAAEAAAAoABYAAAACAAEAAAApABYAAAACAAEAAAAqABYAAAACAAEAAAArABYAAAACAAEAAAAsABYAAAACAAEAAAAtABYAAAACAAEAAAAfABAAAAACAAEAAAAgABAAAAACAAEAAAAhABAAAAACAAEAAAAiABAAAAACAAEAAAAjABAAAAACAAEAAAAeABAAAAACAAEAAAABAAUAAAACAAEAAAABAAYAAAACAAEAAAABAAcAAAACAAEAAAABAAgAAAACAAEAAAAJAAwAAAACAAEAAAAKAAwAAAACAAEAAAALAAwAAAACAAEAAAAMAAwAAAACAAEAAAANAAwAAAACAAEAAAAOAAwAAAACAAEAAAAPAAwAAAACAAEAAAAQAAwAAAACAAEAAAARAAwAAAACAAEAAAASAAwAAAACAAEAAAATAAwAAAACAAEAAAAUAAwAAAACAAEAAAAVAAwAAAACAAEAAAAWAAwAAAACAAEAAAAXAAwAAAACAAEAAAAYAAwAAAACAAEAAAAZAAwAAAACAAEAAAAIAAwAAAACAAEAAAAcAAYAAAACAAEAAAAdAAUAAAACAAEAAAAdAAYAAAACAAEAAAAdAAcAAAACAAEAAAAeAAQAAAACAAEAAAAeAAYAAAACAAEAAAAeAAgAAAACAAEAAAAfAAYAAAACAAEAAAAgAAYAAAACAAEAAAAhAAYAAAACAAEAAAAiAAYAAAACAAEAAAAUABUAAAACAAEAAAAUABQAAAACAAEAAAAVABQAAAACAAEAAAAWABQAAAACAAEAAAAXABQAAAACAAEAAAAYABQAAAACAAEAAAAZABQAAAACAAEAAAAaABQAAAACAAEAAAAaABUAAAACAAEAAAAoABUAAAACAAEAAAAoABQAAAACAAEAAAApABQAAAACAAEAAAAqABQAAAACAAEAAAArABQAAAACAAEAAAAsABQAAAACAAEAAAAtABQAAAACAAEAAAAtABUAAAACAAEAAAAZAAoAAAACAAEAAAAZAAsAAAACAAEAAAAHAAwAAAACAAEAAAAGAAwAAAACAAEAAAAFAAwAAAACAAEAAAABAAkAAAACAAEAAAABAAoAAAACAAEAAAABAAsAAAACAAEAAAABAAwAAAACAAEAAAACAAwAAAACAAEAAAADAAwAAAACAAEAAAAEAAwAAAACAAEAAAAZAAgAAAACAAEAAAAYAAgAAAACAAEAAAAXAAgAAAACAAEAAAAWAAgAAAACAAEAAAAVAAgAAAACAAEAAAAUAAgAAAACAAEAAAATAAgAAAACAAEAAAASAAgAAAACAAEAAAARAAgAAAACAAEAAAAQAAgAAAACAAEAAAAPAAgAAAACAAEAAAAOAAgAAAACAAEAAAANAAgAAAACAAEAAAAMAAgAAAACAAEAAAALAAgAAAACAAEAAAAKAAgAAAACAAEAAAAZAAkAAAACAAEAAAABAAQAAAACAAEAAAACAAQAAAACAAEAAAADAAQAAAACAAEAAAAEAAQAAAACAAEAAAAFAAQAAAACAAEAAAAGAAQAAAACAAEAAAAHAAQAAAACAAEAAAAIAAQAAAACAAEAAAAJAAQAAAACAAEAAAAJAAcAAAACAAEAAAAJAAgAAAACAAEAAAAIAAgAAAACAAEAAAAIAAkAAAACAAEAAAAIAAcAAAACAAEAAAAJAAkAAAACAAEAAAAeAA4AAAACAAEAAAAfAA4AAAACAAEAAAAgAA4AAAACAAEAAAAhAA4AAAACAAEAAAAiAA4AAAACAAEAAAAjAA4AAAACAAEAAAA=")
-tile_set = SubResource("TileSet_1kb3a")
+tile_map_data = PackedByteArray("AAAZACAAAAACAAEAAAARACAAAAACAAEAAAAJACAAAAACAAEAAAAoACAAAAACAAEAAAAwACAAAAACAAEAAAA3ACAAAAACAAEAAAAdAB0AAAACAAEAAAAeAB0AAAACAAEAAAAfAB0AAAACAAEAAAAgAB0AAAACAAEAAAAhAB0AAAACAAEAAAAiAB0AAAACAAEAAAAjAB0AAAACAAEAAAAkAB0AAAACAAEAAAAUABYAAAACAAEAAAAVABYAAAACAAEAAAAWABYAAAACAAEAAAAXABYAAAACAAEAAAAYABYAAAACAAEAAAAZABYAAAACAAEAAAAaABYAAAACAAEAAAAoABYAAAACAAEAAAApABYAAAACAAEAAAAqABYAAAACAAEAAAArABYAAAACAAEAAAAsABYAAAACAAEAAAAtABYAAAACAAEAAAAfABAAAAACAAEAAAAgABAAAAACAAEAAAAhABAAAAACAAEAAAAiABAAAAACAAEAAAAjABAAAAACAAEAAAAeABAAAAACAAEAAAABAAUAAAACAAAAAAABAAYAAAACAAAAAAABAAcAAAACAAAAAAABAAgAAAACAAAAAAAJAAwAAAACAAEAAAAKAAwAAAACAAEAAAALAAwAAAACAAEAAAAMAAwAAAACAAEAAAANAAwAAAACAAEAAAAOAAwAAAACAAEAAAAPAAwAAAACAAEAAAAQAAwAAAACAAEAAAARAAwAAAACAAEAAAASAAwAAAACAAEAAAATAAwAAAACAAEAAAAUAAwAAAACAAEAAAAVAAwAAAACAAEAAAAWAAwAAAACAAEAAAAXAAwAAAACAAEAAAAYAAwAAAACAAEAAAAZAAwAAAACAAEAAAAIAAwAAAACAAEAAAAcAAYAAAACAAEAAAAdAAUAAAACAAAAAAAdAAYAAAACAAAAAAAdAAcAAAACAAEAAAAeAAQAAAACAAAAAAAeAAYAAAACAAAAAAAeAAgAAAACAAEAAAAfAAYAAAACAAEAAAAgAAYAAAACAAEAAAAhAAYAAAACAAEAAAAiAAYAAAACAAEAAAAUABUAAAACAAAAAAAUABQAAAACAAAAAAAVABQAAAACAAEAAAAWABQAAAACAAEAAAAXABQAAAACAAEAAAAYABQAAAACAAEAAAAZABQAAAACAAEAAAAaABQAAAACAAAAAAAaABUAAAACAAAAAAAoABUAAAACAAAAAAAoABQAAAACAAAAAAApABQAAAACAAEAAAAqABQAAAACAAEAAAArABQAAAACAAEAAAAsABQAAAACAAEAAAAtABQAAAACAAAAAAAtABUAAAACAAAAAAAZAAoAAAACAAAAAAAZAAsAAAACAAAAAAAHAAwAAAACAAEAAAAGAAwAAAACAAEAAAAFAAwAAAACAAEAAAABAAkAAAACAAAAAAABAAoAAAACAAAAAAABAAsAAAACAAAAAAABAAwAAAACAAEAAAACAAwAAAACAAEAAAADAAwAAAACAAEAAAAEAAwAAAACAAEAAAAZAAgAAAACAAAAAAAYAAgAAAACAAEAAAAXAAgAAAACAAEAAAAWAAgAAAACAAEAAAAVAAgAAAACAAEAAAAUAAgAAAACAAEAAAATAAgAAAACAAEAAAASAAgAAAACAAEAAAARAAgAAAACAAEAAAAQAAgAAAACAAEAAAAPAAgAAAACAAEAAAAOAAgAAAACAAEAAAANAAgAAAACAAEAAAAMAAgAAAACAAEAAAALAAgAAAACAAEAAAAKAAgAAAACAAEAAAAZAAkAAAACAAAAAAABAAQAAAACAAAAAAACAAQAAAACAAEAAAADAAQAAAACAAEAAAAEAAQAAAACAAEAAAAFAAQAAAACAAEAAAAGAAQAAAACAAEAAAAHAAQAAAACAAEAAAAIAAQAAAACAAEAAAAJAAQAAAACAAEAAAAJAAcAAAACAAAAAAAJAAgAAAACAAAAAAAIAAgAAAACAAAAAAAIAAkAAAACAAEAAAAIAAcAAAACAAAAAAAJAAkAAAACAAEAAAAeAA4AAAACAAEAAAAfAA4AAAACAAEAAAAgAA4AAAACAAEAAAAhAA4AAAACAAEAAAAiAA4AAAACAAEAAAAjAA4AAAACAAEAAAAeAAcAAAACAAAAAAAeAAUAAAACAAAAAAA=")
+tile_set = ExtResource("9_24nab")
+collision_visibility_mode = 1
 
 [node name="TilemapProps" type="TileMapLayer" parent="Tilemaps"]
 tile_map_data = PackedByteArray("AAACAAMAAgAAAAAABQA=")
@@ -147,3 +131,69 @@ tile_set = SubResource("TileSet_lwfqw")
 [node name="TilemapItems" type="TileMapLayer" parent="Tilemaps"]
 tile_map_data = PackedByteArray("AAAGAAwAAAAAAAAAAQAHAAwAAAAAAAAAAQAIAAwAAAAAAAAAAQAJAAwAAAAAAAAAAQAKAAwAAAAAAAAAAQALAAwAAAAAAAAAAQAMAAwAAAAAAAAAAQANAAwAAAAAAAAAAQAOAAwAAAAAAAAAAQATAAwAAAAAAAAAAQAUAAwAAAAAAAAAAQAVAAwAAAAAAAAAAQAWAAwAAAAAAAAAAQAXAAwAAAAAAAAAAQAYAAwAAAAAAAAAAQAZAAwAAAAAAAAAAQAHAAcAAAAAAAAAAQAIAAcAAAAAAAAAAQAJAAcAAAAAAAAAAQAKAAcAAAAAAAAAAQALAAcAAAAAAAAAAQAMAAcAAAAAAAAAAQANAAcAAAAAAAAAAQAOAAcAAAAAAAAAAQAPAAcAAAAAAAAAAQAQAAcAAAAAAAAAAQARAAcAAAAAAAAAAQASAAcAAAAAAAAAAQATAAcAAAAAAAAAAQAUAAcAAAAAAAAAAQAVAAcAAAAAAAAAAQAWAAcAAAAAAAAAAQAXAAcAAAAAAAAAAQAYAAcAAAAAAAAAAQAZAAcAAAAAAAAAAQAGAAcAAAAAAAAAAQAGAAgAAAAAAAAAAQAHAAgAAAAAAAAAAQAHAAYAAAAAAAAAAQAGAAYAAAAAAAAAAQAIAAYAAAAAAAAAAQAIAAgAAAAAAAAAAQAGAA0AAAAAAAAAAQAHAA0AAAAAAAAAAQAIAA0AAAAAAAAAAQAIAAsAAAAAAAAAAQAHAAsAAAAAAAAAAQAGAAsAAAAAAAAAAQAXAAsAAAAAAAAAAQAXAA0AAAAAAAAAAQAYAA0AAAAAAAAAAQAZAAsAAAAAAAAAAQAYAAsAAAAAAAAAAQAZAA0AAAAAAAAAAQAXAAgAAAAAAAAAAQAYAAgAAAAAAAAAAQAZAAgAAAAAAAAAAQAZAAYAAAAAAAAAAQAYAAYAAAAAAAAAAQAXAAYAAAAAAAAAAQASAAwAAAAAAAAAAQAPAAwAAAAAAAAAAQAQAAwAAAAAAAAAAQARAAwAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_m1cs8")
+
+[connection signal="body_entered" from="Tilemaps/TilemapProps/Exit" to="Tilemaps/TilemapProps/Exit" method="_on_body_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/Coin" to="Tilemaps/TilemapItems/Coin" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25485" to="Tilemaps/TilemapItems/@Area2D@25485" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25486" to="Tilemaps/TilemapItems/@Area2D@25486" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25487" to="Tilemaps/TilemapItems/@Area2D@25487" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25488" to="Tilemaps/TilemapItems/@Area2D@25488" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25489" to="Tilemaps/TilemapItems/@Area2D@25489" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25490" to="Tilemaps/TilemapItems/@Area2D@25490" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25491" to="Tilemaps/TilemapItems/@Area2D@25491" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25492" to="Tilemaps/TilemapItems/@Area2D@25492" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25493" to="Tilemaps/TilemapItems/@Area2D@25493" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25494" to="Tilemaps/TilemapItems/@Area2D@25494" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25495" to="Tilemaps/TilemapItems/@Area2D@25495" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25496" to="Tilemaps/TilemapItems/@Area2D@25496" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25497" to="Tilemaps/TilemapItems/@Area2D@25497" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25498" to="Tilemaps/TilemapItems/@Area2D@25498" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25499" to="Tilemaps/TilemapItems/@Area2D@25499" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25500" to="Tilemaps/TilemapItems/@Area2D@25500" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25501" to="Tilemaps/TilemapItems/@Area2D@25501" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25502" to="Tilemaps/TilemapItems/@Area2D@25502" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25503" to="Tilemaps/TilemapItems/@Area2D@25503" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25504" to="Tilemaps/TilemapItems/@Area2D@25504" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25505" to="Tilemaps/TilemapItems/@Area2D@25505" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25506" to="Tilemaps/TilemapItems/@Area2D@25506" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25507" to="Tilemaps/TilemapItems/@Area2D@25507" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25508" to="Tilemaps/TilemapItems/@Area2D@25508" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25509" to="Tilemaps/TilemapItems/@Area2D@25509" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25510" to="Tilemaps/TilemapItems/@Area2D@25510" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25511" to="Tilemaps/TilemapItems/@Area2D@25511" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25512" to="Tilemaps/TilemapItems/@Area2D@25512" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25513" to="Tilemaps/TilemapItems/@Area2D@25513" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25514" to="Tilemaps/TilemapItems/@Area2D@25514" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25515" to="Tilemaps/TilemapItems/@Area2D@25515" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25516" to="Tilemaps/TilemapItems/@Area2D@25516" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25517" to="Tilemaps/TilemapItems/@Area2D@25517" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25518" to="Tilemaps/TilemapItems/@Area2D@25518" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25519" to="Tilemaps/TilemapItems/@Area2D@25519" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25520" to="Tilemaps/TilemapItems/@Area2D@25520" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25521" to="Tilemaps/TilemapItems/@Area2D@25521" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25522" to="Tilemaps/TilemapItems/@Area2D@25522" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25523" to="Tilemaps/TilemapItems/@Area2D@25523" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25524" to="Tilemaps/TilemapItems/@Area2D@25524" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25525" to="Tilemaps/TilemapItems/@Area2D@25525" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25526" to="Tilemaps/TilemapItems/@Area2D@25526" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25527" to="Tilemaps/TilemapItems/@Area2D@25527" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25528" to="Tilemaps/TilemapItems/@Area2D@25528" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25529" to="Tilemaps/TilemapItems/@Area2D@25529" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25530" to="Tilemaps/TilemapItems/@Area2D@25530" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25531" to="Tilemaps/TilemapItems/@Area2D@25531" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25532" to="Tilemaps/TilemapItems/@Area2D@25532" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25533" to="Tilemaps/TilemapItems/@Area2D@25533" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25534" to="Tilemaps/TilemapItems/@Area2D@25534" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25535" to="Tilemaps/TilemapItems/@Area2D@25535" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25536" to="Tilemaps/TilemapItems/@Area2D@25536" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25537" to="Tilemaps/TilemapItems/@Area2D@25537" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25538" to="Tilemaps/TilemapItems/@Area2D@25538" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25539" to="Tilemaps/TilemapItems/@Area2D@25539" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25540" to="Tilemaps/TilemapItems/@Area2D@25540" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25541" to="Tilemaps/TilemapItems/@Area2D@25541" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25542" to="Tilemaps/TilemapItems/@Area2D@25542" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25543" to="Tilemaps/TilemapItems/@Area2D@25543" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25544" to="Tilemaps/TilemapItems/@Area2D@25544" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25545" to="Tilemaps/TilemapItems/@Area2D@25545" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25546" to="Tilemaps/TilemapItems/@Area2D@25546" method="_on_area_entered"]
+[connection signal="area_entered" from="Tilemaps/TilemapItems/@Area2D@25547" to="Tilemaps/TilemapItems/@Area2D@25547" method="_on_area_entered"]

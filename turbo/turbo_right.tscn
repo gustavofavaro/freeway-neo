@@ -34,7 +34,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ut4v"]
-size = Vector2(8, 8)
+size = Vector2(12, 12)
 
 [node name="Turbo" type="Area2D"]
 collision_mask = 2

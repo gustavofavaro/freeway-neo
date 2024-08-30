@@ -12,5 +12,5 @@ rotation = 1.5708
 frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-8.63073e-13, -2.38419e-07)
+position = Vector2(-1.93715e-06, 7.94667e-09)
 shape = SubResource("RectangleShape2D_4ut4v")
